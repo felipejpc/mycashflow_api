@@ -4,10 +4,12 @@ RSpec.describe 'Users API', type: :request do
   let!(:user) { FactoryGirl.create(:user) }
   let(:user_id) { user.id }
 
+  before { host! 'api.mycashflow.dev'}
+
   describe 'GET /users/:id' do
     before do
       headers = { 'Accept' => 'application/mycashflow-api-version:1' }
-      get "/users/#{user_id}", {}, headers
+      get "/users/#{user_id}", params: {}, headers: headers
     end
 
     context 'when the user exists' do
@@ -15,6 +17,48 @@ RSpec.describe 'Users API', type: :request do
         user_response = JSON.parse(response.body)
         expect(user_response['id']).to eq(user_id)
       end
+
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context 'when the user does not exist'do
+      let(:user_id) {100}
+      it 'returns status code 404' do
+        expect(response).to have_http_status(404)
+      end
+    end
+
+  end
+
+  describe 'POST /users' do
+    before do
+      headers = { 'Accept' => 'application/mycashflow-api-version:1' }
+      post '/users', params: { user: user_params }, headers: headers
+    end
+
+    context 'when the request params are valid' do
+      let(:user_params) { FactoryGirl.attributes_for(:user) }
+      it 'returns status code 201' do
+        expect(response).to have_http_status(201)
+      end
+
+      it 'returns json data for the created user' do
+        user_response = JSON.parse(response.body, symbolize_names: true)
+        expect(user_response[:email]).to eq(user_params[:email])
+      end     
+    end
+    context 'when the request params are invalid' do
+      let(:user_params) { FactoryGirl.attributes_for(:user, email: 'invalidemail@') }
+      it 'returns status code 422' do
+        expect(response).to have_http_status(422)
+      end 
+      it 'returns the json for the errors' do
+        user_response = JSON.parse(response.body)
+        expect(user_response).to have_key('errors')
+      end
+            
     end
   end
 
