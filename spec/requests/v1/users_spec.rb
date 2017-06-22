@@ -53,13 +53,12 @@ RSpec.describe 'Users API', type: :request do
       let(:user_params) { FactoryGirl.attributes_for(:user, email: 'invalidemail@') }
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
-      end 
-      it 'returns the json for the errors' do
-        user_response = JSON.parse(response.body)
-        expect(user_response).to have_key('errors')
       end
-            
+       
+      it 'returns the json for the errors' do
+        user_response = JSON.parse(response.body, symbolize_names: true)
+        expect(user_response).to have_key(:errors)
+      end           
     end
   end
-
 end
