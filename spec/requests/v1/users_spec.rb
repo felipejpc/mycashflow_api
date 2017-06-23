@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Users API', type: :request do
+  before { host! 'api.mycashflow.dev'}
+  
   let!(:user) { FactoryGirl.create(:user) }
   let(:user_id) { user.id }
   let(:headers) do 
@@ -8,9 +10,7 @@ RSpec.describe 'Users API', type: :request do
       'Accept' => 'application/mycashflow-api-version:1',
       'Content-Type' => Mime[:json].to_s
     }
-  end
-
-  before { host! 'api.mycashflow.dev'}
+  end  
 
   describe 'GET /users/:id' do
     before do
