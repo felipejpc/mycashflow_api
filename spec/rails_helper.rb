@@ -44,7 +44,7 @@ RSpec.configure do |config|
 
 # Loads the methods of modules
   config.include FactoryGirl::Syntax::Methods
-  config.include RequestSpecHelper, type: :request
+  config.include RequestSpecHelper
   
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
