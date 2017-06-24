@@ -26,7 +26,7 @@ RSpec.describe 'Accounts API', type: :request do
     end
 
     it 'returns 5 tasks from database' do
-      expect(json_body[:accounts].count).to eq(6)
+      expect(json_body[:data].count).to eq(6)
     end
   end  
 
@@ -37,7 +37,7 @@ RSpec.describe 'Accounts API', type: :request do
 
     context 'when the account exists' do
       it 'returns the account' do
-        expect(json_body[:id]).to eq(account_id)
+        expect(json_body[:data][:id]).to eq(account_id.to_s)
       end
 
       it 'returns status code 200' do
@@ -66,7 +66,7 @@ RSpec.describe 'Accounts API', type: :request do
       end
 
       it 'returns json data for the created account' do
-        expect(json_body[:bank_name]).to eq(account_params[:bank_name])
+        expect(json_body[:data][:attributes][:'bank-name']).to eq(account_params[:bank_name])
       end     
     end
 
@@ -94,7 +94,7 @@ RSpec.describe 'Accounts API', type: :request do
       end
 
       it 'returns json data for the updated account' do
-        expect(json_body[:bank_name]).to eq(account_params[:bank_name])
+        expect(json_body[:data][:attributes][:'bank-name']).to eq(account_params[:bank_name])
       end     
     end
 

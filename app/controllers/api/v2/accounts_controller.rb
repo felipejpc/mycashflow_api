@@ -1,11 +1,11 @@
-class Api::V1::AccountsController < ApplicationController
+class Api::V2::AccountsController < ApplicationController
   before_action :authenticate_with_token!
 
   respond_to :json
 
   def index
     accounts = current_user.accounts
-    render json: { accounts: accounts}, status: 200
+    render json: accounts, status: 200
   end
 
   def show
