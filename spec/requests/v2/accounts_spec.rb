@@ -4,7 +4,8 @@ RSpec.describe 'Accounts API', type: :request do
   before { host! 'api.mycashflow.dev' }
 
   let!(:user) { FactoryGirl.create(:user) }
-  let!(:account) { FactoryGirl.create(:account, user_id: user.id) }
+  let!(:bank) { FactoryGirl.create(:bank) }
+  let!(:account) { FactoryGirl.create(:account, user_id: user.id, bank_id: bank.id) }
   let(:account_id) { account.id }
 
   let(:headers) do
@@ -18,7 +19,7 @@ RSpec.describe 'Accounts API', type: :request do
   describe 'GET /accounts' do
     context 'when the filter param is not sent' do
       before do
-        FactoryGirl.create_list(:account, 5, user_id: user.id)
+        FactoryGirl.create_list(:account, 5, user_id: user.id, bank_id: bank.id)
         get '/accounts', params: {}, headers: headers
       end
 
@@ -33,11 +34,11 @@ RSpec.describe 'Accounts API', type: :request do
 
     context 'when the filter param is sent' do
       let!(:register_1) { FactoryGirl.create(:account, bank_name: 'banco do brasil', 
-      account: '1234', agency: '12', user_id: user.id) }
+      account: '1234', agency: '12', user_id: user.id, bank_id: bank.id) }
       let!(:register_2) { FactoryGirl.create(:account, bank_name: 'caixa economica', 
-      account: '34231', agency: '22', user_id: user.id) }
+      account: '34231', agency: '22', user_id: user.id, bank_id: bank.id) }
       let!(:register_3) { FactoryGirl.create(:account, bank_name: 'brasilcred', 
-      account: '3187', agency: '21', user_id: user.id) }       
+      account: '3187', agency: '21', user_id: user.id, bank_id: bank.id) }       
       
       before do     
         get '/accounts?q[bank_name_cont]=bras&q[s]=account+DESC', params: {}, headers: headers

@@ -1,3 +1,5 @@
+##
+# This class representing a API User
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -9,7 +11,8 @@ class User < ApplicationRecord
   validates_uniqueness_of :auth_token
 
   before_create :generate_authentication_token!
-
+##
+# Bring some information about the user (Email and Created_at)
   def info
     "#{email} - #{created_at}"
   end

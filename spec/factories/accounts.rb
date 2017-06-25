@@ -4,5 +4,6 @@ FactoryGirl.define do
     account '3452'
     agency '23'
     user
+    bank
   end
 end

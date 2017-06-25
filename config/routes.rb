@@ -8,11 +8,14 @@ Rails.application.routes.draw do
       resources :users, only: %i[show create update destroy]
       resources :sessions, only: %i[create destroy]
       resources :accounts, only: %i[index show create update destroy]
+      resources :banks, only: %i[index show create update destroy]
     end
+    
     namespace :v2, path: '/', constraints: ApiVersionConstraint.new(apiversion: 2, default: true) do
       resources :users, only: %i[show create update destroy]
       resources :sessions, only: %i[create destroy]
       resources :accounts, only: %i[index show create update destroy]
+      resources :banks, only: %i[index show create update destroy]
     end
   end
 end

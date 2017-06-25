@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :bank do
     name { Faker::Bank.name }
-    cod { Faker::Bank.swift_bic }
+    cod { Faker::Number.number(5) }
   end
 end

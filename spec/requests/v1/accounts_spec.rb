@@ -4,7 +4,8 @@ RSpec.describe 'Accounts API', type: :request do
   before { host! 'api.mycashflow.dev' }
 
   let!(:user) { FactoryGirl.create(:user) }
-  let!(:account) { FactoryGirl.create(:account, user_id: user.id) }
+  let!(:bank) { FactoryGirl.create(:bank) }
+  let!(:account) { FactoryGirl.create(:account, user_id: user.id, bank_id: bank.id) }
   let(:account_id) { account.id }
 
   let(:headers) do
@@ -17,7 +18,7 @@ RSpec.describe 'Accounts API', type: :request do
 
   describe 'GET /accounts' do
     before do
-      FactoryGirl.create_list(:account, 5, user_id: user.id)
+      FactoryGirl.create_list(:account, 5, user_id: user.id, bank_id: bank.id)
       get '/accounts', params: {}, headers: headers
     end
 
