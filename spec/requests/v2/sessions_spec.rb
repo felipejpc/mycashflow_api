@@ -1,9 +1,8 @@
 require 'rails_helper'
-
 RSpec.describe 'Sessions API', type: :request do
   before { host! 'api.mycashflow.dev' }
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) {   FactoryGirl.create(:user) }
   let(:headers) do
     {
       'Accept' => 'application/mycashflow-api-version:2',
