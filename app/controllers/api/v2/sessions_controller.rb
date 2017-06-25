@@ -8,8 +8,8 @@ class Api::V2::SessionsController < ApplicationController
       user.save
       render json: user, status: 200
     else
-      render json: { errors: 'invalid password or email'}, status: 401
-    end    
+      render json: { errors: 'invalid password or email' }, status: 401
+    end
   end
 
   def destroy
@@ -23,6 +23,5 @@ class Api::V2::SessionsController < ApplicationController
 
   def session_params
     params.require(:session).permit(:email, :password)
-  end 
-
+  end
 end

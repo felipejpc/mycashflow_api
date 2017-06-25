@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Sessions API', type: :request do
-  before { host! 'api.mycashflow.dev'}
+  before { host! 'api.mycashflow.dev' }
 
   let(:user) { FactoryGirl.create(:user) }
-  let(:headers) do 
+  let(:headers) do
     {
       'Accept' => 'application/mycashflow-api-version:2',
       'Content-Type' => Mime[:json].to_s
@@ -43,19 +43,17 @@ RSpec.describe 'Sessions API', type: :request do
   end
 
   describe 'DELETE /sessions/:id' do
-    let( :auth_token ) { user.auth_token }
+    let(:auth_token) { user.auth_token }
     before do
-      delete "/sessions/#{auth_token}", params: { }, headers: headers
+      delete "/sessions/#{auth_token}", params: {}, headers: headers
     end
 
-      it 'returns status code 204' do
-        expect(response).to have_http_status(204)
-      end
+    it 'returns status code 204' do
+      expect(response).to have_http_status(204)
+    end
 
-      it 'changes the user auth token' do
-        expect( User.find_by( auth_token: auth_token ) ).to be_nil
-      end
-
+    it 'changes the user auth token' do
+      expect(User.find_by(auth_token: auth_token)).to be_nil
+    end
   end
-
 end

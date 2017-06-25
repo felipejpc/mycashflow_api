@@ -11,7 +11,7 @@ RSpec.describe Authenticable do
     let(:user) { FactoryGirl.create(:user) }
 
     before do
-      req = double( :headers => { 'Authorization' => user.auth_token } )
+      req = double(headers: { 'Authorization' => user.auth_token })
       allow(app_controller).to receive(:request).and_return(req)
     end
 
@@ -55,12 +55,10 @@ RSpec.describe Authenticable do
 
     context 'when there is no user logged in' do
       before do
-        user = FactoryGirl.create(:user)
         allow(app_controller).to receive(:current_user).and_return(nil)
       end
 
       it { expect(app_controller.user_logged_in?).to be false }
     end
-
   end
 end

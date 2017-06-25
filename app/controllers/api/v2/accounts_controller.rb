@@ -7,20 +7,18 @@ class Api::V2::AccountsController < ApplicationController
   end
 
   def show
-    begin
-      account = current_user.accounts.find(params[:id])
-      render json: account, status: 200
-    rescue
-      head 404      
-    end
+    account = current_user.accounts.find(params[:id])
+    render json: account, status: 200
+  rescue
+    head 404
   end
 
   def create
     account = current_user.accounts.build(account_params)
     if account.save
       render json: account, status: 201
-    else      
-      render json: { errors: account.errors}, status: 422      
+    else
+      render json: { errors: account.errors }, status: 422
     end
   end
 
@@ -29,8 +27,8 @@ class Api::V2::AccountsController < ApplicationController
     if account.update(account_params)
       render json: account, status: 200
     else
-      render json: {errors: account.errors}, status: 422
-    end        
+      render json: { errors: account.errors }, status: 422
+    end
   end
 
   def destroy
@@ -41,8 +39,6 @@ class Api::V2::AccountsController < ApplicationController
   private
 
   def account_params
-    params.require(:account).permit(:bank_name, :account, :agency)  
+    params.require(:account).permit(:bank_name, :account, :agency)
   end
-
-
 end
