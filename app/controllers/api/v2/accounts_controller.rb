@@ -2,7 +2,7 @@ class Api::V2::AccountsController < ApplicationController
   before_action :authenticate_with_token!
 
   def index
-    accounts = current_user.accounts
+    accounts = current_user.accounts.ransack(params[:q]).result
     render json: accounts, status: 200
   end
 

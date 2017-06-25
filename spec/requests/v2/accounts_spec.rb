@@ -16,19 +16,41 @@ RSpec.describe 'Accounts API', type: :request do
   end
 
   describe 'GET /accounts' do
-    before do
-      FactoryGirl.create_list(:account, 5, user_id: user.id)
-      get '/accounts', params: {}, headers: headers
+    context 'when the filter param is not sent' do
+      before do
+        FactoryGirl.create_list(:account, 5, user_id: user.id)
+        get '/accounts', params: {}, headers: headers
+      end
+
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'returns 5 tasks from database' do
+        expect(json_body[:data].count).to eq(6)
+      end
     end
 
-    it 'returns status code 200' do
-      expect(response).to have_http_status(200)
-    end
+    context 'when the filter param is sent' do
+      let!(:register_1) { FactoryGirl.create(:account, bank_name: 'banco do brasil', 
+      account: '1234', agency: '12', user_id: user.id) }
+      let!(:register_2) { FactoryGirl.create(:account, bank_name: 'caixa economica', 
+      account: '34231', agency: '22', user_id: user.id) }
+      let!(:register_3) { FactoryGirl.create(:account, bank_name: 'brasilcred', 
+      account: '3187', agency: '21', user_id: user.id) }       
+      
+      before do     
+        get '/accounts?q[bank_name_cont]=bras&q[s]=account+DESC', params: {}, headers: headers
+      end
 
-    it 'returns 5 tasks from database' do
-      expect(json_body[:data].count).to eq(6)
+      it 'returns only the matching results in the correct order' do
+        retuned_results = json_body[:data].map { |t| t[:attributes][:'bank-name']}
+
+        expect(retuned_results).to eq([ register_3.bank_name, register_1.bank_name ])
+      end
     end
   end
+    
 
   describe 'GET /accounts/:id' do
     before do
