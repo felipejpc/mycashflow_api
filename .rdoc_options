@@ -1,0 +1,31 @@
+--- !ruby/object:RDoc::Options
+encoding: UTF-8
+static_path: []
+rdoc_include:
+- "."
+- "/home/vagrant/desenv/mycashflow_api"
+charset: UTF-8
+exclude: 
+- "/log"
+- "/tmp"
+- "/db"
+- "/public/robots.txt"
+- "/Gemfile"
+- "/Gemfile.lock"
+- "/config.ru"
+- "/Rakefile"
+hyperlink_all: false
+line_numbers: false
+locale: 
+locale_dir: locale
+locale_name: 
+main_page: 
+markup: rdoc
+output_decoration: true
+page_dir: 
+show_hash: false
+tab_width: 8
+template_stylesheets: []
+title: MyCashFlow - API
+visibility: :protected
+webcvs: 

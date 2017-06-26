@@ -1,6 +1,9 @@
-# README
+# MyCashFlow
+MyCashFlow is personal financial software that helps you to control you money.
 
-This README has all you need to know to use and running this API.
+## README
+
+In this README content you'll find all you need to know to use and running this API.
 
 * Ruby version:  2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]
 
@@ -17,5 +20,3 @@ This README has all you need to know to use and running this API.
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
-* ...

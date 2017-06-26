@@ -4,6 +4,6 @@ FactoryGirl.define do
     account '3452'
     agency '23'
     user
-    bank
+    bank { Faker::Number.number(3) }
   end
 end

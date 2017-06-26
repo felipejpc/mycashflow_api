@@ -82,7 +82,7 @@ RSpec.describe 'Accounts API', type: :request do
     end
 
     context 'when the request params are valid' do
-      let(:account_params) { FactoryGirl.attributes_for(:account) }
+      let(:account_params) { FactoryGirl.attributes_for(:account, user_id: user.id, bank_id: bank.id) }
 
       it 'returns status code 201' do
         expect(response).to have_http_status(201)
