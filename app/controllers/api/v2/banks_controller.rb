@@ -1,5 +1,6 @@
+##
+# This Class controls the basic CRUD method's of bank's
 class Api::V2::BanksController < ApplicationController
-  
   def index
     banks = Bank.all.ransack(params[:q]).result
     render json: banks, status: 200
@@ -40,5 +41,4 @@ class Api::V2::BanksController < ApplicationController
   def bank_params
     params.require(:bank).permit(:name, :cod)
   end
-
 end
