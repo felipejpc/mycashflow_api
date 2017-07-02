@@ -81,7 +81,7 @@ var SearchIndex =
 	{
 		"name": "Api::V2::BanksController",
 		"link": "Api/V2/BanksController.html",
-		"snippet": "",
+		"snippet": "<p>This Class controls the basic CRUD method&#39;s of bank&#39;s\n",
 		"type": "normalclass"
 	},
 	{
@@ -490,6 +490,12 @@ var SearchIndex =
 		"name": "README",
 		"link": "README_md.html",
 		"snippet": "<p>MyCashFlow\n<p>MyCashFlow is personal financial software that helps you to control you\nmoney.\n<p>README\n",
+		"type": "toplevel"
+	},
+	{
+		"name": "auto_annotate_models.rake",
+		"link": "lib/tasks/auto_annotate_models_rake.html",
+		"snippet": "<p># NOTE: only doing this in development as some production environments\n(Heroku) # NOTE: are sensitive …\n",
 		"type": "toplevel"
 	}
 ]

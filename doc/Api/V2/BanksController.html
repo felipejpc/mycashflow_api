@@ -108,7 +108,9 @@
 		</section>
 
 		<section class="description">
-					</section>
+			
+<p>This Class controls the basic CRUD method&#39;s of bank&#39;s</p>
+		</section>
 
 				<section id="5Buntitled-5D" class="documentation-section">
 			
@@ -141,7 +143,7 @@
 																
 											<div class="method-source-code" id="create-source">
 							<pre class="prettyprint linenums"><code 
-								class="language-ruby"><span class="ruby-comment"># File app/controllers/api/v2/banks_controller.rb, line 15</span>
+								class="language-ruby"><span class="ruby-comment"># File app/controllers/api/v2/banks_controller.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-identifier">bank</span> = <span class="ruby-constant">Bank</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">bank_params</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">bank</span>.<span class="ruby-identifier">save</span>
@@ -168,7 +170,7 @@
 																
 											<div class="method-source-code" id="destroy-source">
 							<pre class="prettyprint linenums"><code 
-								class="language-ruby"><span class="ruby-comment"># File app/controllers/api/v2/banks_controller.rb, line 33</span>
+								class="language-ruby"><span class="ruby-comment"># File app/controllers/api/v2/banks_controller.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-constant">Bank</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">head</span> <span class="ruby-value">204</span>
@@ -191,7 +193,7 @@
 																
 											<div class="method-source-code" id="index-source">
 							<pre class="prettyprint linenums"><code 
-								class="language-ruby"><span class="ruby-comment"># File app/controllers/api/v2/banks_controller.rb, line 3</span>
+								class="language-ruby"><span class="ruby-comment"># File app/controllers/api/v2/banks_controller.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-identifier">banks</span> = <span class="ruby-constant">Bank</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">ransack</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:q</span>]).<span class="ruby-identifier">result</span>
   <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">banks</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">200</span>
@@ -214,7 +216,7 @@
 																
 											<div class="method-source-code" id="show-source">
 							<pre class="prettyprint linenums"><code 
-								class="language-ruby"><span class="ruby-comment"># File app/controllers/api/v2/banks_controller.rb, line 8</span>
+								class="language-ruby"><span class="ruby-comment"># File app/controllers/api/v2/banks_controller.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-identifier">bank</span> = <span class="ruby-constant">Bank</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">bank</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">200</span>
@@ -239,7 +241,7 @@
 																
 											<div class="method-source-code" id="update-source">
 							<pre class="prettyprint linenums"><code 
-								class="language-ruby"><span class="ruby-comment"># File app/controllers/api/v2/banks_controller.rb, line 24</span>
+								class="language-ruby"><span class="ruby-comment"># File app/controllers/api/v2/banks_controller.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">bank</span> = <span class="ruby-constant">Bank</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">bank</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">bank_params</span>)
@@ -278,6 +280,7 @@
 	<!-- Class dropdown menu -->
 	<div id="class-dropdown" class="dropdown-menu has-scroll">
 	<ul>
+			<li><a href="../../Api/V2/BanksController.html">Api::V2::BanksController</a></li>
 			<li><a href="../../Account.html">Account</a></li>
 			<li><a href="../../ApiVersionConstraint.html">ApiVersionConstraint</a></li>
 			<li><a href="../../ApplicationController.html">ApplicationController</a></li>
@@ -291,6 +294,7 @@
 	<div id="file-dropdown" class="dropdown-menu has-scroll">
 	<ul>
 			<li><a href="../../README_md.html">README</a></li>
+			<li><a href="../../lib/tasks/auto_annotate_models_rake.html">auto_annotate_models.rake</a></li>
 		</ul>
 	</div>
 

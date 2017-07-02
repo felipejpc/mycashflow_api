@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!--
+
+  Fivefish RDoc Generator
+  $Id$
+
+  Authors:
+  - Michael Granger <ged@FaerieMUD.org>
+
+ -->
+<html lang="en">
+<head>
+	<title>MyCashFlow - API</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+	<link href="../.." rel="prefix" />
+
+	<link href="../../css/fivefish.min.css" rel="stylesheet" />
+
+	<script src="../../js/jquery-1.7.1.min.js" type="text/javascript"
+		defer="defer" charset="utf-8"></script>
+	<script src="../../js/bootstrap.min.js" type="text/javascript"
+		defer="defer" charset="utf-8"></script>
+	<script src="../../js/searchindex.js" type="text/javascript"
+		defer="defer" charset="utf-8"></script>
+	<script src="../../js/fivefish.min.js" type="text/javascript"
+		defer="defer" charset="utf-8" onload="initFivefish()"></script>
+</head>
+
+<body class="file-page">
+
+	<nav class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+
+				<a class="brand"
+					href="../../index.html">MyCashFlow - API</a>
+
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li>
+							<a href="#"
+								class="dropdown-toggle"
+								data-dropdown="#class-dropdown">
+								Classes
+								<b class="caret"></b>
+							</a>
+						</li>
+						<li>
+							<a href="#"
+								class="dropdown-toggle"
+								data-dropdown="#file-dropdown">
+								Files
+								<b class="caret"></b>
+							</a>
+						</li>
+					</ul>
+				</div><!--/.nav-collapse -->
+				<span class="pull-right">
+					<form class="navbar-search">
+						<input type="hidden" id="navbar-search-target" value="" />
+						<input type="text" class="search-query" value=""
+							placeholder="Method, Class, or Filename" />
+					</form>
+				</span>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		
+		<header class="hero-unit">
+					<h1>auto_annotate_models</h1>
+				</header>
+
+		<section class="description">
+			
+<p># NOTE: only doing this in development as some production environments
+(Heroku) # NOTE: are sensitive to local FS writes, and besides – it&#39;s
+just not proper # NOTE: to have a dev-mode tool do its thing in production.
+if Rails.env.development?</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;annotate&#39;</span>
+<span class="ruby-identifier">task</span> :<span class="ruby-identifier">set_annotation_options</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-comment"># You can override any of these by setting an environment variable of the</span>
+  <span class="ruby-comment"># same name.</span>
+  <span class="ruby-constant">Annotate</span>.<span class="ruby-identifier">set_defaults</span>(
+    <span class="ruby-string">&#39;routes&#39;</span>                    =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;false&#39;</span>,
+    <span class="ruby-string">&#39;position_in_routes&#39;</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;after&#39;</span>,
+    <span class="ruby-string">&#39;position_in_class&#39;</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;after&#39;</span>,
+    <span class="ruby-string">&#39;position_in_test&#39;</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;after&#39;</span>,
+    <span class="ruby-string">&#39;position_in_fixture&#39;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;after&#39;</span>,
+    <span class="ruby-string">&#39;position_in_factory&#39;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;after&#39;</span>,
+    <span class="ruby-string">&#39;position_in_serializer&#39;</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;after&#39;</span>,
+    <span class="ruby-string">&#39;show_foreign_keys&#39;</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;true&#39;</span>,
+    <span class="ruby-string">&#39;show_complete_foreign_keys&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;false&#39;</span>,
+    <span class="ruby-string">&#39;show_indexes&#39;</span>              =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;true&#39;</span>,
+    <span class="ruby-string">&#39;simple_indexes&#39;</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;false&#39;</span>,
+    <span class="ruby-string">&#39;model_dir&#39;</span>                 =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;app/models&#39;</span>,
+    <span class="ruby-string">&#39;root_dir&#39;</span>                  =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;&#39;</span>,
+    <span class="ruby-string">&#39;include_version&#39;</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;false&#39;</span>,
+    <span class="ruby-string">&#39;require&#39;</span>                   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;&#39;</span>,
+    <span class="ruby-string">&#39;exclude_tests&#39;</span>             =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;false&#39;</span>,
+    <span class="ruby-string">&#39;exclude_fixtures&#39;</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;false&#39;</span>,
+    <span class="ruby-string">&#39;exclude_factories&#39;</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;false&#39;</span>,
+    <span class="ruby-string">&#39;exclude_serializers&#39;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;false&#39;</span>,
+    <span class="ruby-string">&#39;exclude_scaffolds&#39;</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;true&#39;</span>,
+    <span class="ruby-string">&#39;exclude_controllers&#39;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;true&#39;</span>,
+    <span class="ruby-string">&#39;exclude_helpers&#39;</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;true&#39;</span>,
+    <span class="ruby-string">&#39;exclude_sti_subclasses&#39;</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;false&#39;</span>,
+    <span class="ruby-string">&#39;ignore_model_sub_dir&#39;</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;false&#39;</span>,
+    <span class="ruby-string">&#39;ignore_columns&#39;</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-string">&#39;ignore_routes&#39;</span>             =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-string">&#39;ignore_unknown_models&#39;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;false&#39;</span>,
+    <span class="ruby-string">&#39;hide_limit_column_types&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;integer,boolean&#39;</span>,
+    <span class="ruby-string">&#39;hide_default_column_types&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;json,jsonb,hstore&#39;</span>,
+    <span class="ruby-string">&#39;skip_on_db_migrate&#39;</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;false&#39;</span>,
+    <span class="ruby-string">&#39;format_bare&#39;</span>               =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;false&#39;</span>,
+    <span class="ruby-string">&#39;format_rdoc&#39;</span>               =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;true&#39;</span>,
+    <span class="ruby-string">&#39;format_markdown&#39;</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;false&#39;</span>,
+    <span class="ruby-string">&#39;sort&#39;</span>                      =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;false&#39;</span>,
+    <span class="ruby-string">&#39;force&#39;</span>                     =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;false&#39;</span>,
+    <span class="ruby-string">&#39;trace&#39;</span>                     =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;false&#39;</span>,
+    <span class="ruby-string">&#39;wrapper_open&#39;</span>              =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-string">&#39;wrapper_close&#39;</span>             =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-string">&#39;with_comment&#39;</span>              =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+  )
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-constant">Annotate</span>.<span class="ruby-identifier">load_tasks</span>
+</pre>
+
+<p>end</p>
+		</section>
+
+
+		<hr>
+
+		<footer>
+			<div class="container">
+				<span id="rdoc-version">Generated by RDoc 5.0.0</span> using the
+				<a id="generator-version"
+					href="http://deveiate.org/fivefish">Fivefish RDoc 0.3.0</a> generator.
+			</div>
+		</footer>
+	</div> <!-- /container -->
+
+	<!-- Class dropdown menu -->
+	<div id="class-dropdown" class="dropdown-menu has-scroll">
+	<ul>
+			<li><a href="../../Api/V2/BanksController.html">Api::V2::BanksController</a></li>
+			<li><a href="../../Account.html">Account</a></li>
+			<li><a href="../../ApiVersionConstraint.html">ApiVersionConstraint</a></li>
+			<li><a href="../../ApplicationController.html">ApplicationController</a></li>
+			<li><a href="../../Authenticable.html">Authenticable</a></li>
+			<li><a href="../../Bank.html">Bank</a></li>
+			<li><a href="../../User.html">User</a></li>
+		</ul>
+	</div>
+
+	<!-- File dropdown menu -->
+	<div id="file-dropdown" class="dropdown-menu has-scroll">
+	<ul>
+			<li><a href="../../README_md.html">README</a></li>
+			<li><a href="../../lib/tasks/auto_annotate_models_rake.html">auto_annotate_models.rake</a></li>
+		</ul>
+	</div>
+
+</body>
+</html>

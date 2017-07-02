@@ -59,3 +59,6 @@ gem 'active_model_serializers', '~> 0.10.0'
 
 # Ranscka gem improves queries on url requests
 gem 'ransack', github: 'activerecord-hackery/ransack'
+
+# Add a comment summarizing the current schema for documentation
+gem 'annotate'
