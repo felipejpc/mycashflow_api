@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :accounts, dependent: :destroy
 
   validates :email, uniqueness: { case_sensitive: false }
+  validates_presence_of :email, :full_name, :short_name
   validates_uniqueness_of :auth_token
 
   before_create :generate_authentication_token!

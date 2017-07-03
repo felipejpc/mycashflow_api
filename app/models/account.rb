@@ -8,7 +8,7 @@ class Account < ApplicationRecord
   belongs_to :user
   belongs_to :bank
 
-  validates_presence_of :bank_name, :account, :agency
+  validates_presence_of :account, :agency
 end
 
 # == Schema Information

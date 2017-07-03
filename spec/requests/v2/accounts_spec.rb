@@ -33,21 +33,21 @@ RSpec.describe 'Accounts API', type: :request do
     end
 
     context 'when the filter param is sent' do
-      let!(:register_1) { FactoryGirl.create(:account, bank_name: 'banco do brasil', 
+      let!(:register_1) { FactoryGirl.create(:account, description: 'banco do brasil', 
       account: '1234', agency: '12', user_id: user.id, bank_id: bank.id) }
-      let!(:register_2) { FactoryGirl.create(:account, bank_name: 'caixa economica', 
+      let!(:register_2) { FactoryGirl.create(:account, description: 'caixa economica', 
       account: '34231', agency: '22', user_id: user.id, bank_id: bank.id) }
-      let!(:register_3) { FactoryGirl.create(:account, bank_name: 'brasilcred', 
+      let!(:register_3) { FactoryGirl.create(:account, description: 'brasilcred', 
       account: '3187', agency: '21', user_id: user.id, bank_id: bank.id) }       
       
       before do     
-        get '/accounts?q[bank_name_cont]=bras&q[s]=account+DESC', params: {}, headers: headers
+        get '/accounts?q[description_cont]=bras&q[s]=account+DESC', params: {}, headers: headers
       end
 
       it 'returns only the matching results in the correct order' do
-        retuned_results = json_body[:data].map { |t| t[:attributes][:'bank-name']}
+        retuned_results = json_body[:data].map { |t| t[:attributes][:'description']}
 
-        expect(retuned_results).to eq([ register_3.bank_name, register_1.bank_name ])
+        expect(retuned_results).to eq([ register_3.description, register_1.description ])
       end
     end
   end
@@ -111,24 +111,24 @@ RSpec.describe 'Accounts API', type: :request do
     end
 
     context 'when the request params are valid' do
-      let(:account_params) { { bank_name: 'new_name' } }
+      let(:account_params) { { agency: '0123352' } }
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
       end
 
       it 'returns json data for the updated account' do
-        expect(json_body[:data][:attributes][:'bank-name']).to eq(account_params[:bank_name])
+        expect(json_body[:data][:attributes][:'agency']).to eq(account_params[:agency])
       end
     end
 
     context 'when the request params are invalid' do
-      let(:account_params) { { bank_name: nil } }
+      let(:account_params) { { agency: nil } }
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
       end
 
       it 'returns the json for the errors' do
-        expect(json_body[:errors]).to have_key(:bank_name)
+        expect(json_body[:errors]).to have_key(:agency)
       end
     end
   end

@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170625164257) do
+ActiveRecord::Schema.define(version: 20170702235350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
-    t.string "bank_name"
     t.string "account"
     t.string "agency"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "bank_id"
+    t.text "description"
     t.index ["bank_id"], name: "index_accounts_on_bank_id"
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 20170625164257) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "auth_token"
+    t.string "full_name"
+    t.string "short_name"
     t.index ["auth_token"], name: "index_users_on_auth_token", unique: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

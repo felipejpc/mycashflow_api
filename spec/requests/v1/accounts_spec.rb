@@ -89,24 +89,24 @@ RSpec.describe 'Accounts API', type: :request do
     end
 
     context 'when the request params are valid' do
-      let(:account_params) { { bank_name: 'new_name' } }
+      let(:account_params) { { agency: '098712' } }
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
       end
 
       it 'returns json data for the updated account' do
-        expect(json_body[:bank_name]).to eq(account_params[:bank_name])
+        expect(json_body[:agency]).to eq(account_params[:agency])
       end
     end
 
     context 'when the request params are invalid' do
-      let(:account_params) { { bank_name: nil } }
+      let(:account_params) { { agency: nil } }
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
       end
 
       it 'returns the json for the errors' do
-        expect(json_body[:errors]).to have_key(:bank_name)
+        expect(json_body[:errors]).to have_key(:agency)
       end
     end
   end
