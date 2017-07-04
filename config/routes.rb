@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       resources :sessions, only: %i[create destroy]
       resources :accounts, only: %i[index show create update destroy]
       resources :banks, only: %i[index show create update destroy]
+      resources :credit_cards, only: %i[index show create update destroy]
     end
   end
 end
