@@ -11,6 +11,7 @@ class User < ApplicationRecord
 # Class relatioship has_many :accounts, dependent: :destroy
   has_many :accounts, dependent: :destroy
   has_many :credit_cards, dependent: :destroy
+  has_many :chart_of_accounts, dependent: :destroy
 
   validates :email, uniqueness: { case_sensitive: false }
   validates_presence_of :email, :full_name, :short_name
