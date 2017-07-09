@@ -2,6 +2,7 @@
 # This class implement a Chart of Accounts Model
 class ChartOfAccount < ApplicationRecord
   belongs_to :user
+  has_many :chart_of_account_items
 
   validates_presence_of :name
 end

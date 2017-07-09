@@ -27,7 +27,7 @@ RSpec.describe 'Accounts API', type: :request do
         expect(response).to have_http_status(200)
       end
 
-      it 'returns 5 tasks from database' do
+      it 'returns 5 registers from database' do
         expect(json_body[:data].count).to eq(6)
       end
     end

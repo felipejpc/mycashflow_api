@@ -26,7 +26,7 @@ RSpec.describe 'CreditCard API', type: :request do
         expect(response).to have_http_status(200)
       end
 
-      it 'returns 6 tasks from database' do
+      it 'returns 6 registers from database' do
         expect(json_body[:data].count).to eq(6)
       end
     end

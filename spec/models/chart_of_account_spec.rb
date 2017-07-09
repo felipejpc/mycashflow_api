@@ -5,6 +5,7 @@ RSpec.describe ChartOfAccount, type: :model do
 
   context 'Validations of the class' do
     it { is_expected.to belong_to(:user) }
+    it { is_expected.to have_many(:chart_of_account_items)}
     it { is_expected.to validate_presence_of(:name) }
 
     it { is_expected.to respond_to(:name, :description) }

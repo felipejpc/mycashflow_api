@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170704231424) do
+ActiveRecord::Schema.define(version: 20170709033108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,18 @@ ActiveRecord::Schema.define(version: 20170704231424) do
     t.string "cod"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "chart_of_account_items", force: :cascade do |t|
+    t.string "name"
+    t.bigint "ancestor_id"
+    t.bigint "chart_of_account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "description"
+    t.string "accounting_category"
+    t.index ["ancestor_id"], name: "index_chart_of_account_items_on_ancestor_id"
+    t.index ["chart_of_account_id"], name: "index_chart_of_account_items_on_chart_of_account_id"
   end
 
   create_table "chart_of_accounts", force: :cascade do |t|
@@ -85,6 +97,7 @@ ActiveRecord::Schema.define(version: 20170704231424) do
 
   add_foreign_key "accounts", "banks"
   add_foreign_key "accounts", "users"
+  add_foreign_key "chart_of_account_items", "chart_of_accounts"
   add_foreign_key "chart_of_accounts", "users"
   add_foreign_key "credit_cards", "users"
 end

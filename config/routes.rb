@@ -10,14 +10,16 @@ Rails.application.routes.draw do
       resources :accounts, only: %i[index show create update destroy]
       resources :banks, only: %i[index show create update destroy]
     end
-    
+
     namespace :v2, path: '/', constraints: ApiVersionConstraint.new(apiversion: 2, default: true) do
       resources :users, only: %i[show create update destroy]
       resources :sessions, only: %i[create destroy]
       resources :accounts, only: %i[index show create update destroy]
       resources :banks, only: %i[index show create update destroy]
       resources :credit_cards, only: %i[index show create update destroy]
-      resources :chart_of_accounts, only: %i[index show create update destroy]
+      resources :chart_of_accounts, only: %i[index show create update destroy] do
+        resources :chart_of_account_items, only: %i[index show create update destroy]
+      end
     end
   end
 end
